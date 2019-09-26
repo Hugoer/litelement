@@ -1,46 +1,35 @@
-/**
-@license
-Copyright (c) 2018 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
-*/
-
-import { html, css } from 'lit-element';
-import { PageViewElement } from './page-view-element.js';
+import { html, css, property, customElement } from 'lit-element';
+import { PageViewElement } from './page-view-element';
 import { connect } from 'pwa-helpers/connect-mixin.js';
 
 // This element is connected to the Redux store.
-import { store } from '../store.js';
+import { store, RootState } from '../store';
 
 // These are the actions needed by this element.
-import { checkout } from '../actions/shop.js';
+import { checkout } from '../actions/shop';
 
 // We are lazy loading its reducer.
-import shop, { cartQuantitySelector } from '../reducers/shop.js';
+import shop, { cartQuantitySelector } from '../reducers/shop';
 store.addReducers({
   shop
 });
 
 // These are the elements needed by this element.
-import './shop-products.js';
-import './shop-cart.js';
+import './shop-products';
+import './shop-cart';
 
 // These are the shared styles needed by this element.
-import { SharedStyles } from './shared-styles.js';
-import { ButtonSharedStyles } from './button-shared-styles.js';
-import { addToCartIcon } from './my-icons.js';
+import { SharedStyles } from './shared-styles';
+import { ButtonSharedStyles } from './button-shared-styles';
+import { addToCartIcon } from './my-icons';
 
-class MyView3 extends connect(store)(PageViewElement) {
-  static get properties() {
-    return {
-      // This is the data from the store.
-      _quantity: { type: Number },
-      _error: { type: String }
-    };
-  }
+@customElement('my-view3')
+export class MyView3 extends connect(store)(PageViewElement) {
+  @property({ type: Number })
+  private quantity = 0;
+
+  @property({ type: String })
+  private error = '';
 
   static get styles() {
     return [
@@ -77,11 +66,11 @@ class MyView3 extends connect(store)(PageViewElement) {
     ];
   }
 
-  render() {
+  protected render() {
     return html`
       <section>
         <h2>Redux example: shopping cart</h2>
-        <div class="cart">${addToCartIcon}<div class="circle small">${this._quantity}</div></div>
+        <div class="cart">${addToCartIcon}<div class="circle small">${this.quantity}</div></div>
         <p>This is a slightly more advanced Redux example, that simulates a
           shopping cart: getting the products, adding/removing items to the
           cart, and a checkout action, that can sometimes randomly fail (to
@@ -97,10 +86,10 @@ class MyView3 extends connect(store)(PageViewElement) {
         <h3>Your Cart</h3>
         <shop-cart></shop-cart>
 
-        <div>${this._error}</div>
+        <div>${this.error}</div>
         <br>
         <p>
-          <button ?hidden="${this._quantity == 0}" @click="${this._checkoutButtonClicked}">
+          <button ?hidden="${this.quantity === 0}" @click="${this._checkoutButtonClicked}">
             Checkout
           </button>
         </p>
@@ -108,15 +97,13 @@ class MyView3 extends connect(store)(PageViewElement) {
     `;
   }
 
-  _checkoutButtonClicked() {
+  private _checkoutButtonClicked() {
     store.dispatch(checkout());
   }
 
   // This is called every time something is updated in the store.
-  stateChanged(state) {
-    this._quantity = cartQuantitySelector(state);
-    this._error = state.shop.error;
+  stateChanged(state: RootState) {
+    this.quantity = cartQuantitySelector(state);
+    this.error = state.shop!.error;
   }
 }
-
-window.customElements.define('my-view3', MyView3);

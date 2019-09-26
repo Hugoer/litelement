@@ -1,27 +1,19 @@
-/**
-@license
-Copyright (c) 2018 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
-*/
+import { html, customElement } from 'lit-element';
+import { PageViewElement } from './page-view-element';
 
-import { html } from 'lit-element';
-import { PageViewElement } from './page-view-element.js';
-// import { HelloView } from './new-component';
 // These are the shared styles needed by this element.
-import { SharedStyles } from './shared-styles.js';
+import { SharedStyles } from './shared-styles';
 import './new-component';
-class MyView1 extends PageViewElement {
+
+@customElement('my-view1')
+export class MyView1 extends PageViewElement {
   static get styles() {
     return [
       SharedStyles
     ];
   }
 
-  render() {
+  protected render() {
     return html`
       <section>
         <h2>Static page</h2>
@@ -39,5 +31,3 @@ class MyView1 extends PageViewElement {
     `;
   }
 }
-
-window.customElements.define('my-view1', MyView1);

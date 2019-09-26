@@ -1,7 +1,7 @@
 import { css, customElement, html, LitElement, property } from 'lit-element';
 
 @customElement('hello-view')
-class HelloView extends LitElement {
+export class HelloView extends LitElement {
   static get styles() {
     return css`
       #root {

@@ -1,29 +1,46 @@
-/**
-@license
-Copyright (c) 2018 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
-*/
-
+import { Reducer } from 'redux';
 import {
   GET_PRODUCTS,
   ADD_TO_CART,
   REMOVE_FROM_CART,
   CHECKOUT_SUCCESS,
-  CHECKOUT_FAILURE
-} from '../actions/shop.js';
+  CHECKOUT_FAILURE,
+  ShopAction
+} from '../actions/shop';
 import { createSelector } from 'reselect';
+import { RootState, RootAction } from '../store';
 
-const INITIAL_STATE = {
+export interface ShopState {
+  products: ProductsState;
+  cart: CartState;
+  error: string;
+}
+export interface ProductsState {
+  [index: string]: ProductState;
+}
+export interface ProductState {
+  id: number;
+  title: string;
+  price: number;
+  inventory: number;
+}
+export interface CartState {
+  [index: string]: number;
+}
+export interface CartItem {
+  id: number;
+  title: string;
+  amount: number;
+  price: number;
+}
+
+const INITIAL_STATE: ShopState = {
   products: {},
   cart: {},
   error: ''
 };
 
-const shop = (state = INITIAL_STATE, action) => {
+const shop: Reducer<ShopState, RootAction> = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case GET_PRODUCTS:
       return {
@@ -50,7 +67,7 @@ const shop = (state = INITIAL_STATE, action) => {
 };
 
 // Slice reducer: it only reduces the bit of the state it's concerned about.
-const products = (state, action) => {
+const products = (state: ProductsState, action: ShopAction) => {
   switch (action.type) {
     case ADD_TO_CART:
     case REMOVE_FROM_CART:
@@ -64,7 +81,7 @@ const products = (state, action) => {
   }
 };
 
-const product = (state, action) => {
+const product = (state: ProductState, action: ShopAction) => {
   switch (action.type) {
     case ADD_TO_CART:
       return {
@@ -81,7 +98,7 @@ const product = (state, action) => {
   }
 };
 
-const cart = (state, action) => {
+const cart = (state: CartState, action: ShopAction) => {
   switch (action.type) {
     case ADD_TO_CART:
       const addId = action.productId;
@@ -102,7 +119,7 @@ const cart = (state, action) => {
         return {
           ...state,
           [removeId]: quantity
-        }
+        };
       }
     case CHECKOUT_SUCCESS:
       return {};
@@ -124,17 +141,17 @@ export default shop;
 // We use a tiny library called `reselect` to create efficient
 // selectors. More info: https://github.com/reduxjs/reselect.
 
-const cartSelector = state => state.shop.cart;
-const productsSelector = state => state.shop.products;
+const cartSelector = (state: RootState) => state.shop!.cart;
+const productsSelector = (state: RootState) => state.shop!.products;
 
 // Return a flattened array representation of the items in the cart
 export const cartItemsSelector = createSelector(
   cartSelector,
   productsSelector,
-  (cart, products) => {
-    return Object.keys(cart).map(id => {
-      const item = products[id];
-      return {id: item.id, title: item.title, amount: cart[id], price: item.price};
+  (cartItem, productList) => {
+    return Object.keys(cartItem).map(id => {
+      const item = productList[id];
+      return { id: item.id, title: item.title, amount: cartItem[id], price: item.price };
     });
   }
 );
@@ -143,11 +160,11 @@ export const cartItemsSelector = createSelector(
 export const cartTotalSelector = createSelector(
   cartSelector,
   productsSelector,
-  (cart, products) => {
+  (cartItem, productList) => {
     let total = 0;
     Object.keys(cart).forEach(id => {
-      const item = products[id];
-      total += item.price * cart[id];
+      const item = productList[id];
+      total += item.price * cartItem[id];
     });
     return Math.round(total * 100) / 100;
   }
@@ -156,10 +173,10 @@ export const cartTotalSelector = createSelector(
 // Return the number of items in the cart
 export const cartQuantitySelector = createSelector(
   cartSelector,
-  cart => {
+  cartItem => {
     let num = 0;
     Object.keys(cart).forEach(id => {
-      num += cart[id];
+      num += cartItem[id];
     });
     return num;
   }

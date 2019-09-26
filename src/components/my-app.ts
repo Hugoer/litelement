@@ -1,14 +1,4 @@
-/**
-@license
-Copyright (c) 2018 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
-*/
-
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html, css, property, PropertyValues, customElement } from 'lit-element';
 import { setPassiveTouchGestures } from '@polymer/polymer/lib/utils/settings.js';
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
@@ -17,33 +7,43 @@ import { installRouter } from 'pwa-helpers/router.js';
 import { updateMetadata } from 'pwa-helpers/metadata.js';
 
 // This element is connected to the Redux store.
-import { store } from '../store.js';
+import { store, RootState } from '../store';
 
 // These are the actions needed by this element.
 import {
   navigate,
   updateOffline,
   updateDrawerState
-} from '../actions/app.js';
+} from '../actions/app';
+
+// The following line imports the type only - it will be removed by tsc so
+// another import for app-drawer.js is required below.
+import { AppDrawerElement } from '@polymer/app-layout/app-drawer/app-drawer.js';
 
 // These are the elements needed by this element.
 import '@polymer/app-layout/app-drawer/app-drawer.js';
 import '@polymer/app-layout/app-header/app-header.js';
 import '@polymer/app-layout/app-scroll-effects/effects/waterfall.js';
 import '@polymer/app-layout/app-toolbar/app-toolbar.js';
-import { menuIcon } from './my-icons.js';
-import './snack-bar.js';
+import { menuIcon } from './my-icons';
+import './snack-bar';
 
-class MyApp extends connect(store)(LitElement) {
-  static get properties() {
-    return {
-      appTitle: { type: String },
-      _page: { type: String },
-      _drawerOpened: { type: Boolean },
-      _snackbarOpened: { type: Boolean },
-      _offline: { type: Boolean }
-    };
-  }
+@customElement('my-app')
+export class MyApp extends connect(store)(LitElement) {
+  @property({ type: String })
+  appTitle = '';
+
+  @property({ type: String })
+  private page = '';
+
+  @property({ type: Boolean })
+  private drawerOpened = false;
+
+  @property({ type: Boolean })
+  private snackbarOpened = false;
+
+  @property({ type: Boolean })
+  private offline = false;
 
   static get styles() {
     return [
@@ -53,7 +53,7 @@ class MyApp extends connect(store)(LitElement) {
 
           --app-drawer-width: 256px;
 
-          --app-primary-color: #E91E63;
+          --app-primary-color: #e91e63;
           --app-secondary-color: #293237;
           --app-dark-text-color: var(--app-secondary-color);
           --app-light-text-color: white;
@@ -66,7 +66,7 @@ class MyApp extends connect(store)(LitElement) {
 
           --app-drawer-background-color: var(--app-secondary-color);
           --app-drawer-text-color: var(--app-light-text-color);
-          --app-drawer-selected-color: #78909C;
+          --app-drawer-selected-color: #78909c;
         }
 
         app-header {
@@ -191,7 +191,7 @@ class MyApp extends connect(store)(LitElement) {
     ];
   }
 
-  render() {
+  protected render() {
     // Anything that's related to rendering should be done in here.
     return html`
       <!-- Header -->
@@ -203,37 +203,37 @@ class MyApp extends connect(store)(LitElement) {
 
         <!-- This gets hidden on a small screen-->
         <nav class="toolbar-list">
-          <a ?selected="${this._page === 'view1'}" href="/view1">View One</a>
-          <a ?selected="${this._page === 'view2'}" href="/view2">View Two</a>
-          <a ?selected="${this._page === 'view3'}" href="/view3">View Three</a>
+          <a ?selected="${this.page === 'view1'}" href="/view1">View One</a>
+          <a ?selected="${this.page === 'view2'}" href="/view2">View Two</a>
+          <a ?selected="${this.page === 'view3'}" href="/view3">View Three</a>
         </nav>
       </app-header>
 
       <!-- Drawer content -->
       <app-drawer
-          .opened="${this._drawerOpened}"
-          @opened-changed="${this._drawerOpenedChanged}">
+          .opened="${this.drawerOpened}"
+          @opened-changed="${this.drawerOpenedChanged}">
         <nav class="drawer-list">
-          <a ?selected="${this._page === 'view1'}" href="/view1">View One</a>
-          <a ?selected="${this._page === 'view2'}" href="/view2">View Two</a>
-          <a ?selected="${this._page === 'view3'}" href="/view3">View Three</a>
+          <a ?selected="${this.page === 'view1'}" href="/view1">View One</a>
+          <a ?selected="${this.page === 'view2'}" href="/view2">View Two</a>
+          <a ?selected="${this.page === 'view3'}" href="/view3">View Three</a>
         </nav>
       </app-drawer>
 
       <!-- Main content -->
       <main role="main" class="main-content">
-        <my-view1 class="page" ?active="${this._page === 'view1'}"></my-view1>
-        <my-view2 class="page" ?active="${this._page === 'view2'}"></my-view2>
-        <my-view3 class="page" ?active="${this._page === 'view3'}"></my-view3>
-        <my-view404 class="page" ?active="${this._page === 'view404'}"></my-view404>
+        <my-view1 class="page" ?active="${this.page === 'view1'}"></my-view1>
+        <my-view2 class="page" ?active="${this.page === 'view2'}"></my-view2>
+        <my-view3 class="page" ?active="${this.page === 'view3'}"></my-view3>
+        <my-view404 class="page" ?active="${this.page === 'view404'}"></my-view404>
       </main>
 
       <footer>
         <p>Made with &hearts; by the Polymer team.</p>
       </footer>
 
-      <snack-bar ?active="${this._snackbarOpened}">
-        You are now ${this._offline ? 'offline' : 'online'}.
+      <snack-bar ?active="${this.snackbarOpened}">
+        You are now ${this.offline ? 'offline' : 'online'}.
       </snack-bar>
     `;
   }
@@ -245,16 +245,16 @@ class MyApp extends connect(store)(LitElement) {
     setPassiveTouchGestures(true);
   }
 
-  firstUpdated() {
+  protected firstUpdated() {
     installRouter((location) => store.dispatch(navigate(decodeURIComponent(location.pathname))));
     installOfflineWatcher((offline) => store.dispatch(updateOffline(offline)));
     installMediaQueryWatcher(`(min-width: 460px)`,
-        () => store.dispatch(updateDrawerState(false)));
+      () => store.dispatch(updateDrawerState(false)));
   }
 
-  updated(changedProps) {
-    if (changedProps.has('_page')) {
-      const pageTitle = this.appTitle + ' - ' + this._page;
+  protected updated(changedProps: PropertyValues) {
+    if (changedProps.has('page')) {
+      const pageTitle = this.appTitle + ' - ' + this.page;
       updateMetadata({
         title: pageTitle,
         description: pageTitle
@@ -263,20 +263,18 @@ class MyApp extends connect(store)(LitElement) {
     }
   }
 
-  _menuButtonClicked() {
+  private _menuButtonClicked() {
     store.dispatch(updateDrawerState(true));
   }
 
-  _drawerOpenedChanged(e) {
-    store.dispatch(updateDrawerState(e.target.opened));
+  private drawerOpenedChanged(e: Event) {
+    store.dispatch(updateDrawerState((e.target as AppDrawerElement).opened));
   }
 
-  stateChanged(state) {
-    this._page = state.app.page;
-    this._offline = state.app.offline;
-    this._snackbarOpened = state.app.snackbarOpened;
-    this._drawerOpened = state.app.drawerOpened;
+  stateChanged(state: RootState) {
+    this.page = state.app!.page;
+    this.offline = state.app!.offline;
+    this.snackbarOpened = state.app!.snackbarOpened;
+    this.drawerOpened = state.app!.drawerOpened;
   }
 }
-
-window.customElements.define('my-app', MyApp);
