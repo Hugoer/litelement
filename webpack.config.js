@@ -33,7 +33,7 @@ module.exports = {
     plugins: [
         new CopyWebpackPlugin([
             'images/**',
-            'node_modules/@webcomponents/webcomponentsjs/**',
+            'node_modules/@webcomponents/webcomponentsjs/*.js',
             'manifest.json'
         ]),
         new HtmlWebpackPlugin({
