@@ -9,21 +9,6 @@
         "deprecation": {
             "severity": "warning"
         },
-        "component-class-suffix": true,
-        "contextual-lifecycle": true,
-        "directive-class-suffix": true,
-        "directive-selector": [
-            true,
-            "attribute",
-            "app",
-            "camelCase"
-        ],
-        "component-selector": [
-            true,
-            "element",
-            "app",
-            "kebab-case"
-        ],
         "import-blacklist": [
             true,
             "rxjs/Rx"
@@ -60,7 +45,13 @@
             true,
             "ignore-params"
         ],
-        "no-non-null-assertion": true,
+        "no-unused-variable": [
+            true,
+            {
+                "ignore-pattern": "^_"
+            }
+        ],
+        "no-non-null-assertion": false,
         "no-redundant-jsdoc": true,
         "no-switch-case-fall-through": true,
         "no-var-requires": false,
@@ -74,12 +65,6 @@
             true,
             "single"
         ],
-        "trailing-comma": false,
-        "no-input-rename": true,
-        "no-output-on-prefix": true,
-        "no-output-rename": true,
-        "use-lifecycle-interface": true,
-        "use-pipe-transform-interface": true,
-        "prettier": true
+        "trailing-comma": false
     }
 }

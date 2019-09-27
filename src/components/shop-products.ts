@@ -20,7 +20,7 @@ import { ProductsState } from '../reducers/shop';
 @customElement('shop-products')
 export class ShopProducts extends connect(store)(LitElement) {
   @property({ type: Object })
-  private _products: ProductsState = {};
+  private products: ProductsState = {};
 
   static get styles() {
     return [
@@ -35,8 +35,8 @@ export class ShopProducts extends connect(store)(LitElement) {
 
   protected render() {
     return html`
-      ${Object.keys(this._products).map((key) => {
-      const item = this._products[key];
+      ${Object.keys(this.products).map((key) => {
+      const item = this.products[key];
       return html`
           <div>
             <shop-item name="${item.title}" amount="${item.inventory}" price="${item.price}"></shop-item>
@@ -58,11 +58,11 @@ export class ShopProducts extends connect(store)(LitElement) {
   }
 
   private _addButtonClicked(e: Event) {
-    store.dispatch(addToCart((e.currentTarget as HTMLButtonElement).dataset['index']));
+    store.dispatch(addToCart((e.currentTarget as HTMLButtonElement).dataset.index));
   }
 
   // This is called every time something is updated in the store.
   stateChanged(state: RootState) {
-    this._products = state.shop!.products;
+    this.products = state.shop!.products;
   }
 }

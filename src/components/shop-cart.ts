@@ -21,10 +21,10 @@ import { CartItem } from '../reducers/shop';
 @customElement('shop-cart')
 export class ShopCart extends connect(store)(LitElement) {
   @property({ type: Array })
-  private _items: Array<CartItem> = [];
+  private items: Array<CartItem> = [];
 
   @property({ type: Number })
-  private _total = 0;
+  private total = 0;
 
   static get styles() {
     return [
@@ -39,8 +39,8 @@ export class ShopCart extends connect(store)(LitElement) {
 
   protected render() {
     return html`
-      <p ?hidden="${this._items.length !== 0}">Please add some products to cart.</p>
-      ${this._items.map((item) =>
+      <p ?hidden="${this.items.length !== 0}">Please add some products to cart.</p>
+      ${this.items.map((item) =>
       html`
           <div>
             <shop-item .name="${item.title}" .amount="${item.amount}" .price="${item.price}"></shop-item>
@@ -53,18 +53,18 @@ export class ShopCart extends connect(store)(LitElement) {
           </div>
         `
     )}
-      <p ?hidden="${!this._items.length}"><b>Total:</b> ${this._total}</p>
+      <p ?hidden="${!this.items.length}"><b>Total:</b> ${this.total}</p>
     `;
   }
 
 
   private _removeButtonClicked(e: Event) {
-    store.dispatch(removeFromCart((e.currentTarget as HTMLButtonElement).dataset['index']));
+    store.dispatch(removeFromCart((e.currentTarget as HTMLButtonElement).dataset.index));
   }
 
   // This is called every time something is updated in the store.
   stateChanged(state: RootState) {
-    this._items = cartItemsSelector(state);
-    this._total = cartTotalSelector(state);
+    this.items = cartItemsSelector(state);
+    this.total = cartTotalSelector(state);
   }
 }
