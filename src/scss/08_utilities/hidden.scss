@@ -1,0 +1,7 @@
+@each $size-name, $size-value in $hidden-sizes {
+	@include mq($from: $size-value) {
+		.u-hidden-#{size-name} {
+			display: none;
+		}
+	}
+}

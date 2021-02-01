@@ -5,7 +5,7 @@ panel-container {
 //COLORS
 	--defaultBg: var(--color-primary);
 	--defaultBg--dark: var(--color-primary--dark);
-	--miColor: var(--color-primary--txt);
+	--defaultColor: var(--color-primary--txt);
 	--borderBottomColor: var(--color-accent);
 }
 .panel-container.panel-container--alone,
@@ -20,7 +20,7 @@ panel-container {
 	max-width: 280px;
 	max-height: 100vh;
 
-	color: var(--miColor);
+	color: var(--defaultColor);
 	border-right: 1px solid var(--borderColor, transparent);
 	background-color: var(--defaultBg);
 	box-shadow: var(--basic-shadow);

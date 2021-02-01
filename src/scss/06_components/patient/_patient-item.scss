@@ -1,13 +1,13 @@
 patient-item {
 	--defaultBg: var(--color-primary);
 	--defaultBg--dark: var(--color-primary--dark);
-	--miColor: var(--color-primary--txt);
+	--defaultColor: var(--color-primary--txt);
 }
 patient-item {
 	overflow: hidden;
 
 	color: inherit;
-	color: var(--miColor);
+	color: var(--defaultColor);
 	background: linear-gradient(var(--defaultBg), var(--defaultBg--dark));
 }
 .patient {

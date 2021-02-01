@@ -1,6 +1,5 @@
 // COLORS
 
-//refactor
 $color-primary: #436368;
 $color-primary--dark: #06181B;
 $color-primary--txt: #DDECF0;
@@ -16,28 +15,34 @@ $color-paper: #F7F8F9;
 $color-paper--dark: rgb(236, 244, 247);
 $color-gray--medium: #ECEEEF;
 //SPACES
-$spaces: ('default':.5rem,
-    '0_25':.125rem,
-    '0_5':.25rem,
-    '2x':1rem,
+$spaces: (
+  'default':.5rem,
+  '0_25':.125rem,
+  '0_5':.25rem,
+  '2x':1rem,
 	'3x':1.5rem,
-    '4x':2rem,
-    '6x':3rem,
-    );
+  '4x':2rem,
+  '6x':3rem,
+);
 //TIPOGRAPHY
 $font-primary: 'Roboto', sans-serif;
-$font-size: ( 'default':16px,
-    'xs':.75em,
-    'sm':.87em,
-    'lg':1.125em,
-    'xl':2em
-
+$font-size: (
+  'default':16px,
+  'xs':.75em,
+  'sm':.87em,
+  'lg':1.125em,
+  'xl':2em
 );
 //TRANSITIONS
-$transitions: ('default': .4s ease-out,
-    'super-fast':.1s ease-out,
-    'fast':.2s ease-out,
-    'slow':.6s ease-out,
-    'none':none,
+$transitions: (
+  'default': .4s ease-out,
+  'super-fast':.1s ease-out,
+  'fast':.2s ease-out,
+  'slow':.6s ease-out,
+  'none':none,
 );
-
+$hidden-sizes: (
+  'xs' : 768,
+  'md' : 1024,
+  'lg' : 1366
+);

@@ -21,7 +21,7 @@
 	patient-item {
 		--defaultBg: var(--color-accent);
 		--defaultBg--dark: var(--color-accent);
-		--miColor: var(--color--lightest);
+		--defaultColor: var(--color--lightest);
 	}
 }
 @media (prefers-color-scheme: dark) {

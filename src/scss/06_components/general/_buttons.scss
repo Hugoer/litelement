@@ -44,7 +44,7 @@
 	&:hover,
 	&:active,
 	&:focus {
-		color: var(--miColor);
+		color: var(--defaultColor);
 	}
 	svg {
 		width: var(--size);
@@ -86,7 +86,7 @@
 	color: currentColor;
 	border: none;
 
-// border-bottom: 1px dotted var(--miColor);
+// border-bottom: 1px dotted var(--defaultColor);
 	background: transparent;
 
 	&:active,

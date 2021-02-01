@@ -1,7 +1,7 @@
 .c-card {
 	--defaultBg: #{$color-paper};
 	--defaultBg--dark: #{$color-paper--dark};
-	--miColor: #{$color-secondary--txt};
+	--defaultColor: #{$color-secondary--txt};
 }
 .c-card {
 	overflow: hidden;
@@ -10,7 +10,7 @@
 
 	transition: opacity var(--transition-superfast);
 
-	color: var(--miColor);
+	color: var(--defaultColor);
 	background: var(--defaultBg);
 
 // box-shadow: 0 0 4px rgba(0, 0, 0, .25), 0 10px 16px rgba(0, 0, 0, .1);
