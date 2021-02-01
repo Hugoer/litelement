@@ -1,6 +1,7 @@
 config-cmp,
 main-cmp {
-	display: flex;
+	@extend %u-flex;
+
 	overflow-x: hidden;
 	align-items: stretch;
 	flex-direction: row;

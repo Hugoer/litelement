@@ -1,0 +1,9 @@
+@each $display-name, $display-value in $displays {
+	%u-#{$display-name} {
+		display: #{$display-name};
+
+		opacity: .6; // Badge purpose
+	}
+}
+
+// this silent class is used in _main_cmp.scss
