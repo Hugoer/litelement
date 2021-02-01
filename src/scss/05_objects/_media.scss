@@ -1,4 +1,4 @@
-$includeMediaObject: map-get($includes,'media-object');
+$include-media-object: map-get($includes,'media-object');
 
 @mixin o-media() {
 	display: flex;
@@ -22,7 +22,7 @@ $includeMediaObject: map-get($includes,'media-object');
 	flex-direction: column;
 }
 
-@if ($includeMediaObject) {
+@if ($include-media-object) {
 	@debug 'media object included!';
 	.o-media {
 		@include o-media();
