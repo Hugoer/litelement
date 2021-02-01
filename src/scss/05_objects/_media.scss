@@ -1,21 +1,43 @@
-.o-media {
+$includeMediaObject: map-get($includes,'media-object');
+
+@mixin o-media() {
 	display: flex;
 	align-items: flex-start;
 }
-.o-media__img {
+
+@mixin o-media__img() {
 	box-sizing: border-box;
 }
 
-.o-media__body {
+@mixin o-media__body() {
 	flex: 1;
 
 	margin: 0;
 	padding: 0;
 }
 
-.o-col {
+@mixin o-col() {
 	display: flex;
 	flex: 1;
 	flex-direction: column;
 }
+
+@if ($includeMediaObject) {
+	@debug 'media object included!';
+	.o-media {
+		@include o-media();
+	}
+	.o-media__img {
+		@include o-media__img();
+	}
+	.o-media__body {
+		@include o-media__body();
+	}
+	.o-col {
+		@include o-col();
+	}
+}
+
+
+
 
