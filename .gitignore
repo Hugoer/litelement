@@ -1,5 +1,6 @@
 dist/
 node_modules/
+specificity-graph/
 test/integration/screenshots-current/
 _site/
 .DS_Store
