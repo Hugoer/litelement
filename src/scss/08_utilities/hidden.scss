@@ -1,7 +1,9 @@
-@each $size-name, $size-value in $hidden-sizes {
-	@include mq($from: $size-value) {
-		.u-hidden-#{size-name} {
-			display: none;
+@import '../../../node_modules/sass-mq/mq';
+@each $size-name, $size-value in $mq-breakpoints {
+	@include mq($until: $size-value) {
+		@debug '.u-hidden-#{$size-name}';
+		.u-hidden-#{$size-name} {
+			display: none!important;
 		}
 	}
 }
