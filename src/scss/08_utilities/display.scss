@@ -7,5 +7,12 @@
 				display: #{$display-name}!important;
 			}
 		}
+
+@include mq($from: $size-value) {
+			@debug '.u-from-#{$display-name}-#{$size-name}';
+			.u-from-#{$display-name}-#{$size-name} {
+				display: #{$display-name}!important;
+			}
+		}
 	}
 }

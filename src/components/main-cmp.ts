@@ -19,6 +19,7 @@ export class Main extends connect(store)(LitElement) {
       <h2 class="u-hidden-from-tablet">Hidden from tablet</h2>
       <div class="u-block-mobile">Display block until mobile</div>
       <div class="u-none-mobile">Display none until mobile</div>
+      <div class="u-from-none-tablet">Display none from tablet</div>
     `;
   }
 
