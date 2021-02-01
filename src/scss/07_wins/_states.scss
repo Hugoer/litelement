@@ -1,0 +1,10 @@
+.is-dimmed {
+	opacity: .5;
+}
+.is-disabled {
+	pointer-events: none;
+
+	opacity: .5;
+
+	filter: grayscale(100);
+}

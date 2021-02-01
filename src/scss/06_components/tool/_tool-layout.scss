@@ -1,0 +1,47 @@
+.toolbar__item {
+	display: block;
+
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+tool-item {
+	display: block;
+
+	margin: 0;
+	padding: var(--space-default,8px) 0;
+	padding-right: 10px;
+	padding-left: var(--marginLeft);
+
+	cursor: pointer;
+	transition: background var(--transition-default);
+
+	&:hover {
+		background: var(--color-primary--highlight);
+	}
+	&.is-active {
+		text-transform: uppercase;
+
+		color: var(	--color-accent--txt);
+		background: var(--color-accent);
+
+		font-weight: bold;
+	}
+}
+
+.toolbar {
+	display: flex;
+	overflow: auto;
+	align-items: stretch;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+
+	width: 100%;
+	margin: 0;
+	padding: 0;
+
+	list-style: none;
+
+	font-size: var(--fontSize-sm);
+}

@@ -1,0 +1,58 @@
+layer-layout {
+	display: flex;
+	flex-wrap: wrap;
+
+	width: 100%;
+
+	font-size: var(--fontSize-sm);
+}
+
+.layer__container {
+	display: flex;
+	align-items: space-between;
+	flex-wrap: nowrap;
+
+	width: 100%;
+	padding: var(--space-2x,16px) var(--space-2x,16px);
+	padding-left: var(--marginLeft);
+
+
+
+	layer-toggle-visibility {
+		.c-checkbox {
+			margin-right: 0;
+		}
+	}
+	layer-item {
+		flex: 1;
+		.c-checkbox {
+			margin-left: 0;
+		}
+	}
+	&.is-hidden {
+		layer-item {
+			pointer-events: none;
+
+			opacity: .5;
+		}
+	}
+}
+
+
+// controlar la visualización del toggle-visibility en función del layer si la capa es activa o no
+// 1.-en principio siempre está oculto
+layer-toggle-visibility {
+	transition: opacity var(--transition-default);
+
+	opacity: 0;
+}
+//2.-cuando hacemos Hover sobre la capa, siempre se ve
+.layer__container:hover {
+	layer-toggle-visibility {
+		opacity: 1;
+	}
+}
+//3.-Cuando la capa está marcada, el item se ve siempre. Necesito una clase en el parent del checkbox
+layer-toggle-visibility.is-visible {
+	opacity: 1;
+}

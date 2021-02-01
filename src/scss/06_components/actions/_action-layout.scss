@@ -1,0 +1,62 @@
+action-layout {
+	--defaultBg: var(--color-secondary);
+	--defaultBg--dark: var(--color-secondary--dark);
+	--miColor: var(--color-secondary--txt);
+	--color--icons: #737373;
+	--marginLeft: var(--space-default);
+	--sidebarWidth: 280px;
+}
+action-layout {
+	z-index: 2;
+
+	display: flex;
+	overflow: auto;
+	overflow-x: hidden;
+	flex-direction: column;
+
+	width: var(--sidebarWidth);
+
+	transition: width .5s ease-out, padding .5s ease-out;
+	text-align: right;
+
+	color: var(--miColor);
+	border-left: 1px solid var(--borderColor, transparent);
+	background: linear-gradient(var(--defaultBg), var(--defaultBg--dark));
+	box-shadow: var(--basic-shadow);
+
+	.panel {
+		padding-right: var(--marginLeft);
+		padding-left: var(--marginLeft);
+
+		text-align: left;
+		&__header {
+			margin-left: 0;
+		}
+	}
+}
+action-layout.is-collapsed {
+	// transform: translateX(calc( var(--sidebarWidth) - var(--space-4x) ));
+	width: var(--space-4x) ;
+	padding-left: var(--space-4x);
+
+	.c-btn--toggleClose {
+		margin-left: calc( var(--space-4x) * -1);
+	}
+	.clickable {
+		display: none;
+	}
+	.panel {
+		transition: none;
+
+		opacity: 0;
+	}
+	.cardList__item {
+		overflow: hidden;
+	}
+	.panel__subtitle {
+		overflow: hidden;
+
+		height: 1em;
+		max-height: 1em;
+	}
+}

@@ -1,0 +1,37 @@
+.c-range {
+	display: block;
+
+	margin: var(--space-default) var(--space-half);
+
+	input[type=range] {
+		position: relative;
+
+		width: 100%;
+	}
+	input[type=range][orient=vertical] {
+		// position: relative;
+		display: inline-block;
+
+		width: var(--space-default);
+		height: 100%;
+		margin: 0;
+		margin-right: var(--space-default);
+
+		writing-mode: bt-lr;
+		-webkit-appearance: slider-vertical;
+	}
+}
+
+.c-range--hidden {
+	// display: none;
+	visibility: hidden;
+}
+
+// FIX IE11
+body.iecp-u1 {
+	input[type=range][orient=vertical] {
+		width: 100%;
+
+		writing-mode: bt-lr;
+	}
+}

@@ -1,0 +1,40 @@
+patient-item {
+	--defaultBg: var(--color-primary);
+	--defaultBg--dark: var(--color-primary--dark);
+	--miColor: var(--color-primary--txt);
+}
+patient-item {
+	overflow: hidden;
+
+	color: inherit;
+	color: var(--miColor);
+	background: linear-gradient(var(--defaultBg), var(--defaultBg--dark));
+}
+.patient {
+	&__img {
+		box-sizing: border-box;
+		width: var(--space-6x);
+		height: var(--space-6x);
+		margin-right: 1em;
+
+		text-indent: -9999px;
+
+		border: 1px solid #DDECF0;
+		border-radius: 1rem;
+		background: url(../assets/user-default.svg);
+		background-size: cover;
+	}
+	&__title {
+		margin: 0;
+		padding: 0;
+
+		font-size: var(--fontSize-lg);
+		font-weight: 100;
+	}
+	&__subtitle {
+		margin: 0;
+		margin-top: .5em;
+
+		font-size: var(--fontSize-xs);
+	}
+}

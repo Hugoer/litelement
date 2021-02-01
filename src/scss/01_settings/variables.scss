@@ -1,0 +1,45 @@
+:root {
+	// COLOR TOKENS
+	--color-primary: #{$color-primary};
+	--color-primary--dark: #{$color-primary--dark};
+	--color-primary--txt: #{$color-primary--txt};
+	--color-primary--highlight: #{rgba($color-primary--txt, .2)};
+	--color-secondary: #{$color-secondary};
+	--color-secondary--dark: #{$color-secondary--dark};
+	--color-secondary--txt: #{$color-secondary--txt};
+	--color-accent: #{$color-accent};
+	--color-accent--dark: #{$color-accent--dark};
+	--color-accent--txt: #{$color-accent--txt};
+	--color--lightest: #{$color--lightest};
+	--color--darkest: #{$color--darkest};
+}
+:root {
+	//APPLIED COLORS
+	--color: --color-secondary--txt;
+
+	--bg: #{$color-gray--medium};
+
+// TYPOGRAPHY
+	--fontSize-xs: #{map-get($font-size,'xs')};
+	--fontSize-sm: #{map-get($font-size,'sm')};
+	--fontSize-lg: #{map-get($font-size,'lg')};
+
+//SPACES
+	//--space-default:8px
+	--space-default: #{map-get($spaces,'default')};
+	--space-2x: #{map-get($spaces,'2x')};
+	--space-3x: #{map-get($spaces,'3x')};
+	--space-4x: #{map-get($spaces,'4x')};
+	--space-6x: #{map-get($spaces,'6x')};
+	--space-half: #{map-get($spaces,'0_5')};
+	--space-qrter: #{map-get($spaces,'0_25')};
+
+//SHADOWS
+	--basic-shadow: 0 0 2px 3px rgba(0, 0, 0, .1);
+
+//TRANSITIONS
+	--transition-default: #{map-get($transitions,'default')};
+	--transition-superfast: #{map-get($transitions,'super-fast')};
+	--transition-fast: #{map-get($transitions,'fast')};
+	--transition-slow: #{map-get($transitions,'slow')};
+}

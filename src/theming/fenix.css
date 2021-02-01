@@ -1,0 +1,26 @@
+
+/* Este archivo de customización puede ser exclusivamente CSS */
+:root {
+	/*  COLOR TOKENS */
+	--color-primary: #FFFFFF;
+	--color-primary--dark: #FFFFFF;
+	--color-primary--txt: #616161;
+	--color-primary--highlight: rgb(238, 132, 99);
+	--color-secondary: #FFFFFF;
+	--color-secondary--dark: #FFFFFF;
+	--color-secondary--txt: #929292;
+	--color-accent: #F4511E;
+	--color-accent--dark: #F4511E;
+	--color-accent--txt: #FFFFFF;
+	--color--lightest: #FFFFFF;
+	--color--darkest: rgb(10, 12, 12);
+}
+/* PARA UN CUSTOMIZADO MÁS AVANZADO SE PUEDEN IR ATACANDO A LAS CUSTOM PROPERTIES DE CADA COMPONENTE
+*/
+@media (prefers-color-scheme: light) {
+	patient-item {
+		--defaultBg: var(--color-accent);
+		--defaultBg--dark: var(--color-accent);
+		--miColor: var(--color--lightest);
+	}
+}

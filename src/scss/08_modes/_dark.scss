@@ -1,0 +1,20 @@
+@media (prefers-color-scheme: dark) {
+	work-area {
+		--bg: var(--color--darkest);
+	}
+	patient-item,
+	panel-container,
+	action-layout {
+		--defaultBg: var(--color--darkest);
+		--defaultBg--dark: var(--color--darkest);
+		--miColor: var(--color--lightest);
+		--borderColor: var(--color-accent);
+		--borderBottomColor: var(--color-accent);
+	}
+
+	.c-card {
+		--defaultBg: #{rgba($color-primary,.2)};
+		--defaultBg--dark: #{rgba($color-primary,.1)};
+		--miColor: #{$color--lightest};
+	}
+}

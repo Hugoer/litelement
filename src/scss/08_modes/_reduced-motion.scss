@@ -1,0 +1,8 @@
+
+@media screen and (prefers-reduced-motion: reduce) {
+	:root {
+		--transition-default: none;
+		--transition-fast: none;
+		--transition-slow: none;
+	}
+}

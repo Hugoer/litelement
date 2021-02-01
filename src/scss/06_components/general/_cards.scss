@@ -1,0 +1,139 @@
+.c-card {
+	--defaultBg: #{$color-paper};
+	--defaultBg--dark: #{$color-paper--dark};
+	--miColor: #{$color-secondary--txt};
+}
+.c-card {
+	overflow: hidden;
+
+	padding: var(--space-default) ;
+
+	transition: opacity var(--transition-superfast);
+
+	color: var(--miColor);
+	background: var(--defaultBg);
+
+// box-shadow: 0 0 4px rgba(0, 0, 0, .25), 0 10px 16px rgba(0, 0, 0, .1);
+
+	font-size: .8em;
+
+	&__header {
+		display: flex;
+		align-items: flex-start;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+
+		margin: 0;
+
+
+		img {
+			filter: invert(.5)
+			sepia(1)
+			grayscale(1)
+			brightness(1);
+		}
+	}
+	&__toggle {
+		display: flex;
+		align-self: flex-start;
+
+		transition: transform var(--transition-fast);
+
+		line-height: 1.3;
+		;
+		img {
+			width: 1rem;
+		}
+	}
+	&__title {
+		display: flex;
+		overflow: hidden;
+		align-items: flex-start;
+		flex: 1;
+		flex-direction: row;
+
+		max-height: 1.3em;
+		margin: 0;
+		padding: 0;
+		padding-right: var(--space-default, 8px);
+
+		cursor: pointer;
+
+		line-height: 1.3;
+
+		.c-card__title__txt {
+			overflow: hidden;
+
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+	}
+	&.c-card--empty {
+		//en las card vacías, el título no es clicable y tiene además una indentación
+		.c-card__title {
+			padding-left: 1rem;
+
+			cursor: default;
+		}
+	}
+	&__options {
+		color: var(--color-primary);
+		/*	&,
+		img {
+			height: 1.6em;
+
+			cursor: pointer;
+			transition: filter var(--transition-default);
+		}
+		&:hover {
+			&,
+			img {
+				filter: invert(.5) sepia(1) grayscale(1) brightness(.5);
+			}
+		}*/
+	}
+	&__body {
+		overflow: hidden;
+
+		height: 0;
+		padding: 0;
+		padding-left: 1rem;
+	}
+	&.is-opened {
+		.c-card__toggle {
+			transform: rotate(90deg);
+		}
+		.c-card__body {
+			height: auto;
+			padding-top: var(--space-default);
+		}
+	}
+}
+.c-card__basicHeading {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	margin-bottom: var(--spaces-default, 8px);
+
+	border-bottom: 1px dotted lighten(desaturate($color-accent,100),20);
+
+	font-weight: bold;
+
+	.clickable {
+		font-size: .8em;
+		font-style: italic;
+
+		justify-self: flex-end;
+	}
+}
+//STATES
+// .c-card {
+// 	&.is-dimmed {
+// 		opacity: .5;
+// 	}
+// }
+.pepito {
+	r: 30px!important;
+}

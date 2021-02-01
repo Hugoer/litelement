@@ -1,0 +1,21 @@
+.o-media {
+	display: flex;
+	align-items: flex-start;
+}
+.o-media__img {
+	box-sizing: border-box;
+}
+
+.o-media__body {
+	flex: 1;
+
+	margin: 0;
+	padding: 0;
+}
+
+.o-col {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+}
+

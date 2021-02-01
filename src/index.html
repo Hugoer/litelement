@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>LitElement seed</title>
+  <meta name="generator" content="LitElement seed">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="LitElement seed">
+  <base href="./">
+  <link rel="icon" href="images/favicon.ico">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#3f51b5">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="LitElement seed">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="LitElement seed">
+
+  <link rel="apple-touch-icon" href="images/manifest/icon-48x48.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="images/manifest/icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="96x96" href="images/manifest/icon-96x96.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="images/manifest/icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="images/manifest/icon-192x192.png">
+  <meta name="msapplication-TileImage" content="images/manifest/icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#3f51b5">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@username">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="my-app">
+  <meta property="og:image" content="images/manifest/icon-144x144.png" />
+
+  <script>
+    window.process = { env: { NODE_ENV: 'production' } };
+  </script>
+  <script>
+    var translateText = {
+      layers: {
+        title: 'Capas'
+      },
+      patient: {
+        revert: 'Revertir',
+        save: 'Guardar',
+        saveAndClose: 'Guardar y salir',
+        close: 'Cerrar',
+        photo: 'Foto del paciente'
+      }
+    };
+  </script>
+</head>
+
+<body>
+  <main-cmp></main-cmp>
+
+  <noscript>
+    Please enable JavaScript to view this website.
+  </noscript>
+
+  <!-- <script>
+    var mainCmp = document.getElementsByTagName('main-cmp')[0];
+    mainCmp.addEventListener('save', function (evt) {
+      console.log(`Should close window: ${evt.detail.shouldClose}`);
+      console.log(`Base64 image: ${evt.detail.image}`);
+      // document.getElementById('example').src = evt.detail.image;
+    });
+    mainCmp.addEventListener('close', function (evt) {
+      console.log(`Should close from main-cmp`);
+    });
+  </script> -->
+</body>
+
+</html>

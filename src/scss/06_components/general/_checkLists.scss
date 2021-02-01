@@ -1,0 +1,13 @@
+.c-checkList {
+	display: flex;
+
+	margin: 0;
+	margin-bottom: var(--space-2x, 16px);
+	padding: 0;
+
+	list-style: none;
+	&--H {
+		flex-direction: row;
+		justify-content: flex-start;
+	}
+}

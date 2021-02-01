@@ -1,0 +1,17 @@
+@charset 'UTF-8';
+@import './00_externals/normalice/normalice';
+@import './01_settings/fonts';
+@import './01_settings/tokens';
+@import './01_settings/variables';
+@import './03_base/base';
+@import './05_objects/_media';
+@import './06_components/index';
+@import './07_wins/states';
+
+@import './08_modes/dark';
+@import './08_modes/reduced-motion';
+@import './09_debug';
+
+* {
+	box-sizing: border-box;
+}

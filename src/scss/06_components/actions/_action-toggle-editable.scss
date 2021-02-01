@@ -1,0 +1,6 @@
+action-toggle-editable {
+	input[checked] + label svg {
+		fill: var(--color-accent);
+	}
+}
+
