@@ -47,3 +47,9 @@ $mq-breakpoints: (
   desktop: 1024px,
   wide:    1366px
 );
+$displays: (
+  none,
+  block,
+  inline-block,
+  flex
+);

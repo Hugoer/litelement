@@ -1,0 +1,11 @@
+@import '../../../node_modules/sass-mq/mq';
+@each $size-name, $size-value in $mq-breakpoints {
+	@each $display-name, $display-value in $displays {
+		@include mq($until: $size-value) {
+			@debug '.u-#{$display-name}-#{$size-name}';
+			.u-#{$display-name}-#{$size-name} {
+				display: #{$display-name}!important;
+			}
+		}
+	}
+}
