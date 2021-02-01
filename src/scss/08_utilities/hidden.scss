@@ -6,4 +6,11 @@
 			display: none!important;
 		}
 	}
+
+@include mq($from: $size-value) {
+		@debug '.u-hidden-from-#{$size-name}';
+		.u-hidden-from-#{$size-name} {
+			display: none!important;
+		}
+	}
 }

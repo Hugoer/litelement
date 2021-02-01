@@ -15,8 +15,8 @@ export class Main extends connect(store)(LitElement) {
 
   render() {
     return html`
-      <h1 class="u-hidden-tablet">Hello world!</h1>
-      <h2>h1 is hidden in tablet</h2>
+      <h1 class="u-hidden-tablet">Hidden until tablet</h1>
+      <h2 class="u-hidden-from-tablet">Hidden from tablet</h2>
     `;
   }
 
